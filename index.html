@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="VaBene Confeitaria: recheios, ganaches, crocantes, cookies, confeitos e pastas para confeitarias, padarias e sorveterias de todo o Brasil.">
+<title>VaBene Confeitaria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FDF7F6;
+  --white:#FFFFFF;
+  --ink:#2A1A1B;
+  --muted:#7A6264;
+  --line:#E6D5D5;
+  --pink:#F5DCDE;
+  --grey:#EBE6E5;
+  --mint:#DCE8E1;
+  --red:#C4282D;
+  --burgundy:#9B2B2C;
+  --font:"Open Sans",sans-serif;
+  --r:28px;
+  --gutter:clamp(16px,4vw,56px);
+  --nav-h:76px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 8px);color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,p{margin:0}
+h1,h2,h3,h4{font-family:var(--font);font-weight:300;line-height:1.1;text-wrap:balance}
+.wrap{max-width:1360px;margin:0 auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* botoes: pilula com contorno fino, como nos prints */
+.pill{display:inline-flex;align-items:center;justify-content:center;padding:.8em 1.8em;border-radius:999px;border:1px solid currentColor;font:400 .88rem/1 var(--font);letter-spacing:.04em;white-space:nowrap;cursor:pointer;background:transparent;color:var(--red);transition:background-color .25s,color .25s,border-color .25s,transform .25s}
+.pill:hover{background:var(--red);border-color:var(--red);color:#fff}
+.pill:active{transform:scale(.97)}
+.pill.on-dark{color:#fff}
+.pill.on-dark:hover{background:#fff;border-color:#fff;color:var(--burgundy)}
+.pill.solid{background:var(--red);border-color:var(--red);color:#fff}
+.pill.solid:hover{background:var(--burgundy);border-color:var(--burgundy)}
+
+/* topo */
+.top{position:sticky;top:0;z-index:50;height:var(--nav-h);background:var(--white);border-bottom:1px solid var(--line)}
+.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo img{height:56px;width:auto}
+.nav{display:none;gap:34px;font-size:.88rem;font-weight:400;letter-spacing:.06em;text-transform:uppercase}
+.nav a{padding:6px 0;border-bottom:1px solid transparent}
+.nav a:hover,.nav a.active{border-bottom-color:var(--ink)}
+.top-right{display:flex;align-items:center;gap:12px}
+.menu-btn{border:1px solid var(--ink);background:transparent;border-radius:999px;padding:.6em 1.2em;font:400 .82rem var(--font);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+.top .pill{color:var(--ink);padding:.75em 1.5em;font-size:.8rem;text-transform:uppercase}
+.top .pill:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.top .pill.hide-s{display:none}
+@media (min-width:1100px){.nav{display:flex}.menu-btn{display:none}.top .pill.hide-s{display:inline-flex}}
+.drawer{display:none;position:fixed;inset:var(--nav-h) 0 0 0;z-index:49;background:var(--white);padding:16px var(--gutter);overflow:auto}
+.drawer.open{display:block}
+.drawer a{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-size:1.25rem}
+@media (min-width:1100px){.drawer.open{display:none}}
+
+/* hero em tela cheia */
+.hero{position:relative;height:min(calc(100dvh - var(--nav-h)),56vw);min-height:520px;overflow:hidden;background:#d9c9c8}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;pointer-events:none}
+.slide.on{opacity:1;pointer-events:auto}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 80%}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(104,18,24,.62) 0%,rgba(104,18,24,.32) 34%,rgba(104,18,24,0) 58%)}
+.slide .copy{position:absolute;z-index:2;left:0;right:0;top:clamp(36px,8vh,84px);text-align:center;color:#fff;padding:0 var(--gutter)}
+.slide h1{font-size:clamp(2.6rem,6.4vw,5.2rem);font-weight:300;letter-spacing:-.01em}
+.slide p{margin:12px auto 26px;max-width:36ch;font-size:1.05rem;font-weight:400}
+.dots{position:absolute;z-index:3;left:0;right:0;bottom:22px;display:flex;justify-content:center;gap:10px}
+.dots button{width:9px;height:9px;padding:0;border-radius:50%;border:1px solid #fff;background:transparent;cursor:pointer}
+.dots button[aria-current="true"]{background:#fff}
+@media (prefers-reduced-motion:no-preference){.slide.on h1,.slide.on p,.slide.on .pill{animation:rise .8s cubic-bezier(.16,1,.3,1) both}.slide.on p{animation-delay:.08s}.slide.on .pill{animation-delay:.16s}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (max-width:700px){.hero{height:calc(100svh - var(--nav-h))}.slide img{object-position:50% 100%}}
+
+/* titulos de secao */
+.sec{padding-block:clamp(56px,8vw,104px)}
+.t-center{text-align:center;font-size:1.35rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;margin-bottom:clamp(28px,4vw,44px)}
+.t-big{font-size:clamp(2.2rem,4.4vw,3.6rem)}
+
+/* cartoes altos de linhas */
+.lines{padding-top:clamp(40px,6vw,72px);padding-bottom:0}
+.row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,290px);gap:18px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:6px;scrollbar-width:none}
+.row::-webkit-scrollbar{display:none}
+.l-card{position:relative;scroll-snap-align:start;border-radius:var(--r);aspect-ratio:5/7;background:var(--pink);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 18px 22px;overflow:hidden;cursor:pointer;border:0;font:inherit;color:#fff}
+.l-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.l-card:hover img{transform:scale(1.05)}
+.l-card .pill{position:relative;z-index:1;color:#fff;background:rgba(40,10,12,.18);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.l-card:hover .pill{background:#fff;border-color:#fff;color:var(--red)}
+
+.strip{overflow:hidden;margin-top:clamp(44px,6vw,80px);padding:18px 0;background:var(--red)}
+.strip div{display:flex;width:max-content;animation:slide 50s linear infinite}
+.strip span{font-size:.95rem;font-weight:600;color:#fff;white-space:nowrap;letter-spacing:.18em;text-transform:uppercase;display:inline-flex;align-items:center}
+.strip span::after{content:"\2726";margin:0 36px;font-size:.8rem;opacity:.85}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.strip div{animation:none}}
+
+/* catalogo */
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:34px}
+.tab{padding:.65em 1.3em;border-radius:999px;border:1px solid var(--line);background:var(--white);font:400 .86rem var(--font);color:var(--ink);cursor:pointer;transition:all .2s}
+.tab:hover{border-color:var(--red);color:var(--red)}
+.tab[aria-selected="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.cat-note{text-align:center;color:var(--muted);max-width:60ch;margin:-14px auto 34px;font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.p{border:1px solid var(--ink);border-radius:var(--r);padding:12px 12px 20px;background:var(--bg);display:flex;flex-direction:column;gap:14px}
+.p .ph{aspect-ratio:1;border-radius:20px;background:var(--grey);overflow:hidden}
+.p .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.p:hover .ph img{transform:scale(1.06)}
+.p h4{font-size:1.1rem;font-weight:400;padding:0 8px}
+.p small{display:block;padding:0 8px;margin-top:-8px;color:var(--muted);font-size:.85rem}
+.p a{padding:0 8px;font-size:.86rem;font-weight:400;text-decoration:underline;text-underline-offset:4px;width:max-content}
+.p a:hover{color:var(--red)}
+@media (prefers-reduced-motion:no-preference){.grid.swap .p{animation:rise .5s cubic-bezier(.16,1,.3,1) both}}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.grid{gap:12px}.p{padding:8px 8px 16px;border-radius:22px}.p h4{font-size:.98rem;padding:0 4px}.p small,.p a{padding:0 4px}.p small{font-size:.78rem}}
+
+/* cartoes divididos, como no print 3 */
+.markets-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:280px}
+.split .img{position:relative;border-radius:var(--r);overflow:hidden;background:var(--pink);display:grid;place-items:center}
+.split .img.grey{background:var(--grey)}
+.split .img img.cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.split .img img.pk{width:66%;max-height:80%;object-fit:contain}
+.split .txt{background:var(--white);border-radius:var(--r);padding:clamp(18px,2.4vw,30px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px}
+.split h3{font-size:1.55rem;font-weight:400}
+.split p{font-size:.92rem;color:var(--muted)}
+.split.red .txt{background:var(--red);color:#fff}
+.split.red p{color:#fbe3e4}
+.split.red .pill{color:#fff}
+.split.red .pill:hover{background:#fff;border-color:#fff;color:var(--red)}
+@media (max-width:1000px){.markets-grid{grid-template-columns:1fr}}
+@media (max-width:520px){.split{grid-template-columns:1fr}.split .img{min-height:220px}}
+
+/* quem somos + ovais */
+.about{background:var(--white)}
+.about .txt{max-width:760px;margin:0 auto 54px;text-align:center}
+.about .txt p{margin-top:18px;color:var(--muted)}
+.about .txt .q{margin-top:26px;color:var(--ink);font-size:1.15rem;font-weight:400;line-height:1.5}
+.ovals{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.oval{aspect-ratio:3/4.4;border-radius:999px;border:1px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:26px 20px}
+.oval .star{color:var(--red);font-size:1.5rem;line-height:1}
+.oval h3{font-size:1.2rem;font-weight:400}
+.oval p{font-size:.84rem;color:var(--muted);line-height:1.5}
+.oval.photo{padding:0;overflow:hidden;border-color:transparent;position:relative}
+.oval.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (max-width:1000px){.ovals{grid-template-columns:repeat(2,1fr)}.oval{aspect-ratio:3/4}.oval.photo{grid-column:1 / -1;aspect-ratio:2/1}}
+
+/* painel vermelho */
+.panel{color:#fff;display:grid;grid-template-columns:2fr 1fr;gap:12px;align-items:stretch}
+.panel>div:first-child{background:var(--red);border-radius:var(--r);padding:clamp(32px,5vw,72px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:clamp(320px,36vw,460px)}
+.panel h2{font-size:clamp(2.1rem,4vw,3.3rem)}
+.panel p{margin:16px auto 28px;color:#fbe3e4;max-width:42ch;font-weight:300}
+.panel .acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.panel .pill{background:#fff;border-color:#fff;color:var(--red)}
+.panel .pill:hover{background:transparent;color:#fff}
+.collage{display:grid;grid-template-rows:repeat(3,1fr);gap:12px}
+.collage img{width:100%;height:100%;min-height:100px;object-fit:cover;border-radius:var(--r)}
+@media (max-width:860px){.panel{grid-template-columns:1fr}.collage{grid-template-rows:none;grid-template-columns:repeat(3,1fr)}.collage img{aspect-ratio:1}}
+
+/* contato */
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,96px);align-items:start}
+.contact h2{font-size:clamp(2.2rem,4.4vw,3.6rem)}
+.contact .intro p{margin-top:16px;color:var(--muted);max-width:42ch}
+.contact .dl{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.info{margin:0;display:grid}
+.info div{padding:20px 0;border-bottom:1px solid var(--line)}
+.info div:first-child{padding-top:0}
+.info dt{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.info dd{margin:6px 0 0;font-size:1.2rem;font-weight:400}
+.info dd a:hover{color:var(--red)}
+.info .soc{display:flex;gap:10px;flex-wrap:wrap}
+.info .soc a{border:1px solid var(--ink);border-radius:999px;padding:.5em 1.2em;font-size:.86rem;font-weight:400}
+.info .soc a:hover{background:var(--ink);color:#fff}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+
+footer{background:var(--white);border-top:1px solid var(--line);padding-block:36px 30px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer img{height:56px;width:auto}
+footer nav{display:flex;gap:24px;flex-wrap:wrap;font-size:.86rem;font-weight:400}
+footer nav a:hover{color:var(--red)}
+footer .legal{width:100%;font-size:.8rem;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+.cookie{position:fixed;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:70;max-width:720px;margin-inline:auto;background:var(--white);border:1px solid var(--ink);border-radius:var(--r);padding:16px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:.8rem;line-height:1.5}
+.cookie p{flex:1 1 300px;color:var(--muted)}
+.cookie a{text-decoration:underline;text-underline-offset:3px;color:var(--red)}
+.cookie[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="VaBene Confeitaria e Sorveteria">
+      <img src="img/logo.webp" alt="VaBene Confeitaria e Sorveteria" width="95" height="56">
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#produtos">Produtos</a>
+      <a href="#mercados">Mercados</a>
+      <a href="#quem-somos">Quem somos</a>
+      <a href="#receitas">Receitas</a>
+      <a href="https://vabenesorveteria.com.br">Sorveteria</a>
+    </nav>
+    <div class="top-right">
+      <a class="pill hide-s" href="#contato">Fale com a VaBene</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer" type="button">Menu</button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <a href="#produtos">Produtos</a>
+  <a href="#mercados">Mercados</a>
+  <a href="#quem-somos">Quem somos</a>
+  <a href="#receitas">Receitas</a>
+  <a href="https://vabeneconfeitaria.com.br/downloads/">Downloads</a>
+  <a href="https://vabenesorveteria.com.br">VaBene Sorveteria</a>
+  <a href="#contato">Fale com a VaBene</a>
+</div>
+
+<main id="inicio">
+
+<section class="hero" aria-roledescription="carrossel" aria-label="Lançamentos VaBene">
+  <div class="slide on">
+    <img src="img/b1-1280.jpg" srcset="img/b1-1280.jpg 1280w, img/b1-2560.jpg 2560w" sizes="100vw" alt="Recheio artesanal Cocco Bianco e fatia de bolo" width="2560" height="1466" fetchpriority="high">
+    <div class="copy"><h1>Cocco Bianco</h1><p>Recheio artesanal cremoso com pedaços</p><a class="pill on-dark" href="#produtos" data-cat="artesanais">Conheça mais</a></div>
+  </div>
+  <div class="slide">
+    <img src="img/b2-1280.jpg" srcset="img/b2-1280.jpg 1280w, img/b2-2560.jpg 2560w" sizes="100vw" alt="Cookies granulados sabor Speculoos 1kg" width="2560" height="1466" loading="lazy">
+    <div class="copy"><h1>Cookies Speculoos</h1><p>Sabor nobre e marcante</p><a class="pill on-dark" href="#produtos" data-cat="cookies">Conheça mais</a></div>
+  </div>
+  <div class="slide">
+    <img src="img/b3-1280.jpg" srcset="img/b3-1280.jpg 1280w, img/b3-2560.jpg 2560w" sizes="100vw" alt="Recheio artesanal Amendoim com Cacau" width="2560" height="1466" loading="lazy">
+    <div class="copy"><h1>Amendoim com Cacau</h1><p>Sabor tradicional e marcante</p><a class="pill on-dark" href="#produtos" data-cat="artesanais">Conheça mais</a></div>
+  </div>
+  <div class="slide">
+    <img src="img/b4-1280.jpg" srcset="img/b4-1280.jpg 1280w, img/b4-2560.jpg 2560w" sizes="100vw" alt="Recheio forneável Frutas Vermelhas e cheesecake" width="2560" height="1466" loading="lazy">
+    <div class="copy"><h1>Frutas Vermelhas</h1><p>Recheio forneável com pedaços de fruta</p><a class="pill on-dark" href="#produtos" data-cat="forneaveis">Conheça mais</a></div>
+  </div>
+  <div class="slide">
+    <img src="img/b5-1280.jpg" srcset="img/b5-1280.jpg 1280w, img/b5-2560.jpg 2560w" sizes="100vw" alt="Recheio artesanal Chocolate com Avelã e bolo" width="2560" height="1466" loading="lazy">
+    <div class="copy"><h1>Chocolate com Avelã</h1><p>Recheio cremoso com pedaços</p><a class="pill on-dark" href="#produtos" data-cat="artesanais">Conheça mais</a></div>
+  </div>
+  <div class="dots" id="dots" role="group" aria-label="Escolher banner"></div>
+</section>
+
+<section class="sec lines">
+  <div class="wrap">
+    <h2 class="t-center">Linhas de produtos</h2>
+    <div class="row" id="lineRow"></div>
+  </div>
+</section>
+
+<div class="strip" aria-hidden="true">
+  <div id="strip"></div>
+</div>
+
+<section class="sec" id="produtos">
+  <div class="wrap">
+    <h2 class="t-center">Nosso catálogo</h2>
+    <div class="tabs" role="tablist" aria-label="Categorias" id="tabs"></div>
+    <p class="cat-note" id="catNote"></p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="sec" id="mercados" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="t-center">Mercados de atuação</h2>
+    <div class="markets-grid">
+      <article class="split">
+        <div class="img"><img class="cover" src="img/i1.webp" alt="Recheios forneáveis de goiaba e maracujá" loading="lazy"></div>
+        <div class="txt"><h3>Panificação e confeitaria</h3><p>Matérias-primas nobres, praticidade na aplicação e várias opções de acabamento.</p><a class="pill" href="#produtos" data-cat="forneaveis">Ver linha</a></div>
+      </article>
+      <article class="split red">
+        <div class="img"><img class="cover" src="img/p-pastas-06.webp" alt="Pasta saborizante de pistache" loading="lazy"></div>
+        <div class="txt"><h3>Sorveteria</h3><p>Pastas e inclusões para mesclar, cobrir e saborizar, com ótimo custo-benefício.</p><a class="pill" href="#produtos" data-cat="pastas">Ver linha</a></div>
+      </article>
+      <article class="split red">
+        <div class="img grey"><img class="cover" src="img/p-ganaches-04.webp" alt="Ganache de toffee 4kg" loading="lazy"></div>
+        <div class="txt"><h3>Chocolates e trufas</h3><p>Ingredientes e inclusões que somam sabores e texturas para um mercado em crescimento.</p><a class="pill" href="#produtos" data-cat="ganaches">Ver linha</a></div>
+      </article>
+      <article class="split">
+        <div class="img"><img class="cover" src="img/i2.webp" alt="Recheios, ganaches e Creme Leitinho VaBene" loading="lazy"></div>
+        <div class="txt"><h3>Equipe técnica</h3><p>Receituários e treinamentos por todo o Brasil, com profissionais atentos às tendências.</p><a class="pill" href="#receitas">Ver receitas</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec about" id="quem-somos">
+  <div class="wrap">
+    <div class="txt">
+      <h2 class="t-big">Mais de 33 anos de experiência</h2>
+      <p>A VaBene desenvolve e fornece ingredientes para a indústria alimentícia, com inovação, rigor de qualidade e ética nos negócios. O parque fabril moderno conta com laboratório de análises e monitoramento.</p>
+      <p class="q">Nossa missão é desenvolver e ofertar produtos e serviços com excelência, com soluções práticas e criativas, a valores justos, apoiados em condutas éticas e políticas ESG.</p>
+    </div>
+    <div class="ovals">
+      <div class="oval"><span class="star">✦</span><h3>Qualidade</h3><p>Responsabilidade por tudo que ofertamos, com política rigorosa de segurança dos alimentos.</p></div>
+      <div class="oval photo"><img src="img/i3.webp" alt="Recheio artesanal Creme Leitinho" loading="lazy"></div>
+      <div class="oval"><span class="star">✦</span><h3>Integridade</h3><p>Práticas éticas, com respeito às diferenças e crenças individuais.</p></div>
+      <div class="oval"><span class="star">✦</span><h3>Paixão</h3><p>Movidos pela satisfação de produzir e servir com excelência.</p></div>
+      <div class="oval"><span class="star">✦</span><h3>Foco nas pessoas</h3><p>Apoio ao desenvolvimento dos nossos profissionais e parceiros.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="receitas">
+  <div class="wrap">
+    <div class="panel">
+      <div>
+        <h2>Receitas para cada ingrediente</h2>
+        <p>Um receituário especial com dicas de aplicação e infinitas possibilidades.</p>
+        <div class="acts">
+          <a class="pill on-dark" href="https://vabeneconfeitaria.com.br/receitas/">Ver receitas</a>
+          <a class="pill on-dark" href="https://vabeneconfeitaria.com.br/receitas/videos/">Ver vídeos</a>
+        </div>
+      </div>
+      <div class="collage">
+        <img src="img/i4.webp" alt="Recheio de chocolate ao leite com avelã e pedaços" loading="lazy">
+        <img src="img/i5.webp" alt="Recheios forneáveis de goiaba e maracujá" loading="lazy">
+        <img src="img/i6.webp" alt="Creme Leitinho em sobremesa" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="contato" style="padding-top:0">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Fale com a VaBene</h2>
+      <p>Quer saber mais sobre a empresa e os produtos? Ligue ou escreva. Os materiais de apoio estão na página de downloads.</p>
+      <div class="dl"><a class="pill solid" href="https://vabeneconfeitaria.com.br/downloads/">Baixar catálogo</a></div>
+    </div>
+    <dl class="info">
+      <div><dt>Telefone</dt><dd><a href="tel:+551421052108">(+55) 14 2105-2108</a></dd></div>
+      <div><dt>E-mail</dt><dd><a href="mailto:sac@vabenealimentos.com.br">sac@vabenealimentos.com.br</a></dd></div>
+      <div><dt>Endereço</dt><dd>Av. Guiomar Novaes, 215 A<br>Distrito Industrial, Marília/SP<br>CEP 17512-100</dd></div>
+      <div><dt>Redes</dt><dd class="soc"><a href="https://www.instagram.com/vabenealimentos">Instagram</a><a href="https://www.facebook.com/vabenealimentos.oficial">Facebook</a><a href="https://www.youtube.com/channel/UCxe2TYJGQ7-rQ3H5wMo-tdw">YouTube</a></dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#inicio" aria-label="VaBene"><img src="img/logo.webp" alt="VaBene Confeitaria e Sorveteria" width="95" height="56"></a>
+    <nav aria-label="Rodapé">
+      <a href="#produtos">Produtos</a>
+      <a href="#quem-somos">Quem somos</a>
+      <a href="https://vabeneconfeitaria.com.br/receitas/">Receitas</a>
+      <a href="https://vabeneconfeitaria.com.br/downloads/">Downloads</a>
+      <a href="https://vabenesorveteria.com.br">VaBene Sorveteria</a>
+      <a href="https://vabeneconfeitaria.com.br/spanish">Español</a>
+    </nav>
+    <div class="legal"><span>VaBene Alimentos, Marília/SP</span><a href="https://vabeneconfeitaria.com.br/politica-de-privacidade/">Política de Privacidade</a></div>
+  </div>
+</footer>
+
+<div class="cookie" id="cookie" hidden>
+  <p>Declaro que li e concordo com os termos de política de cookies e privacidade deste site. Sendo assim, autorizo o tratamento dos meus dados com atenção às finalidades especificadas nos mencionados termos. <a href="https://vabeneconfeitaria.com.br/politica-de-privacidade/">Política de Privacidade</a></p>
+  <button class="pill solid" id="cookieOk" type="button">Ok</button>
+</div>
+
+<script>
+(function(){
+  var U="";
+  var L="https://vabeneconfeitaria.com.br/portfolio-item/";
+
+  var cats=[
+    {k:"artesanais",n:"Recheios Artesanais",img:"img/c01.webp",d:"Cremosidade e sabores exclusivos, com recheios equilibrados e estrutura suave que valorizam suas receitas."},
+    {k:"forneaveis",n:"Recheios Forneáveis",img:"img/c02.webp",d:"Resistentes ao forneamento e ao congelamento, mantêm textura, cor e sabor em temperaturas extremas."},
+    {k:"toppings",n:"Recheios e Toppings",img:"img/c03.webp",d:"Sofisticação, cremosidade e praticidade, com sabores consagrados no mercado brasileiro."},
+    {k:"ganaches",n:"Ganaches",img:"img/c04.webp",d:"Sabor, brilho e alto rendimento. Servem para cobrir, rechear e decorar com bicos de confeitar."},
+    {k:"crocantes",n:"Crocantes",img:"img/c05.webp",d:"Os primeiros produtos da marca VaBene, versáteis e em embalagens que abrem e fecham com facilidade."},
+    {k:"cookies",n:"Cookies",img:"img/c06.webp",d:"Cookies granulados e em gotas, práticos de aplicar e ideais para receitas mais requintadas."},
+    {k:"confeitos",n:"Confeitos",img:"img/c07.webp",d:"Cor, brilho e sabor para decoração e acabamento."},
+    {k:"amendoim",n:"Amendoim",img:"img/c08.webp",d:"Ricos em proteínas e 100% integral, com seleção e torrefação criteriosas e envase em atmosfera modificada."},
+    {k:"pastas",n:"Pastas Saborizantes",img:"img/c09.webp",d:"Para produção artesanal ou industrial, com alto rendimento, fácil aplicação e aromas naturais preservados."},
+    {k:"avela",n:"Creme de Avelã Varejo",img:"img/c10.webp",d:"Chocolate com avelã de sabor intenso, sem aromas artificiais. Liso, sem pedaços e cremoso."},
+    {k:"pizza",n:"Recheios para Pizza",img:"img/c11.webp",d:"Consistência e sabor para preparar no forno de pizza."}
+  ];
+
+  /* [categoria, nome, imagem, slug] */
+  var P=[
+    ["artesanais","Cocco Bianco","img/p-artesanais-01.webp","recheio-artesanal-cocco-bianco"],
+    ["artesanais","Chocolate com Avelã","img/p-artesanais-02.webp","recheio-artesanal-chocolate-com-avela"],
+    ["artesanais","Amendoim com Cacau","img/p-artesanais-03.webp","recheio-artesanal-amendoim-com-cacau"],
+    ["artesanais","Cookies & Cream","img/p-artesanais-04.webp","recheio-artesanal-cookies-cream"],
+    ["artesanais","Creme Pistache","img/p-artesanais-05.webp","recheio-artesanal-creme-pistache"],
+    ["artesanais","Creme Chocomalte","img/p-artesanais-06.webp","creme-chocomalte"],
+    ["artesanais","Creme Chocowafer","img/p-artesanais-07.webp","creme-chocowafer"],
+    ["artesanais","Creme VaBene Bueno","img/p-artesanais-08.webp","creme-vabene-bueno"],
+    ["artesanais","Creme Bombom 1,01kg","img/p-artesanais-09.webp","recheio-artesanal-creme-bombom-1kg"],
+    ["artesanais","Creme Leitinho 1,01kg","img/p-artesanais-10.webp","recheio-artesanal-creme-leitinho-1kg"],
+    ["artesanais","Creme Morango 1,01kg","img/p-artesanais-11.webp","recheio-artesanal-creme-morango-1kg"],
+    ["artesanais","Creme Amendoim com Pedaços 1,01kg","img/p-artesanais-12.webp","recheio-de-amendoim-com-pedacos-1kg"],
+    ["artesanais","Creme Confeiteiro 1,01kg","img/p-artesanais-13.webp","recheio-artesanal-creme-confeiteiro-1kg"],
+
+    ["forneaveis","Frutas Vermelhas 1,01kg","img/p-forneaveis-01.webp","recheio-forneavel-frutas-vermelhas"],
+    ["forneaveis","Chocolate Intense 1,01kg","img/p-forneaveis-02.webp","recheio-forneavel-sabor-chocolate-intense-1kg"],
+    ["forneaveis","Morango 1,01kg","img/p-forneaveis-03.webp","recheio-forneavel-de-morango-1kg"],
+    ["forneaveis","Doce de Leite 1,01kg","img/p-forneaveis-04.webp","recheio-forneavel-sabor-doce-de-leite-1kg"],
+    ["forneaveis","Brigadeiro 1,01kg","img/p-forneaveis-05.webp","recheio-forneavel-sabor-brigadeiro-1kg"],
+    ["forneaveis","Maracujá 1,01kg","img/p-forneaveis-06.webp","recheio-forneavel-de-maracuja-1kg"],
+    ["forneaveis","Goiaba 1,01kg","img/p-forneaveis-07.webp","recheio-forneavel-de-goiaba-1kg"],
+
+    ["toppings","Creme de Avelã 3kg","img/p-toppings-01.webp","creme-de-avela-com-cacau-3kg"],
+    ["toppings","Creme de Avelã 1kg Pote","img/p-toppings-02.webp","creme-de-avela-com-cacau-1kg-pote"],
+    ["toppings","Creme de Avelã 1kg Manga","img/p-toppings-03.webp","creme-de-avela-com-cacau-1kg-manga"],
+    ["toppings","Chocolate ao Leite com Avelã 4kg","img/p-toppings-04.webp","recheio-de-chocolate-ao-leite-com-avela-4kg"],
+    ["toppings","Chocolate ao Leite com Avelã 1,01kg","img/p-toppings-05.webp","recheio-choc-ao-leite-com-avela-1kg"],
+    ["toppings","Amendoim com Pedaços 4kg","img/p-toppings-06.webp","recheio-de-amendoim-com-pedacos-4kg"],
+    ["toppings","Rechear e Cobrir Chocolate ao Leite 4kg","img/p-toppings-07.webp","rechear-e-cobrir-sabor-chocolate-ao-leite-4kg"],
+
+    ["ganaches","Chocolate ao Leite 4kg","img/p-ganaches-01.webp","ganache-chocolate-ao-leite-4kg"],
+    ["ganaches","Chocolate Branco 4kg","img/p-ganaches-02.webp","ganache-chocolate-branco-4kg"],
+    ["ganaches","Chocolate Meio Amargo 4kg","img/p-ganaches-03.webp","ganache-chocolate-meio-amargo-4kg"],
+    ["ganaches","Toffee 4kg","img/p-ganaches-04.webp","ganache-toffee-4-kg"],
+
+    ["crocantes","Amendoim 2,5kg","img/p-crocantes-01.webp","crocante-de-amendoim-2kg"],
+    ["crocantes","Amendoim 1,05kg","img/p-crocantes-02.webp","crocante-de-amendoim-1kg"],
+    ["crocantes","Amendoim Fino 1,05kg","img/p-crocantes-03.webp","crocante-de-amendoim-fino-1kg"],
+    ["crocantes","Caramello Salato 1,05kg","img/p-crocantes-04.webp","crocante-de-caramello-salato-1kg"],
+    ["crocantes","Doce de Leite 1,05kg","img/p-crocantes-05.webp","crocante-sabor-doce-de-leite-1kg"],
+    ["crocantes","Castanha de Caju 1,05kg","img/p-crocantes-06.webp","crocante-de-castanha-de-caju-1kg"],
+    ["crocantes","Flocos Crocantes de Chocolate 750g","img/p-crocantes-07.webp","flocos-crocantes-750g"],
+
+    ["cookies","Granulados sabor Speculoos 1kg","img/p-cookies-01.webp","cookies-granulados-sabor-speculoos-1kg"],
+    ["cookies","Gotas sabor Chocolate 1kg","img/p-cookies-02.webp","cookies-gotas-sabor-chocolate-1kg"],
+    ["cookies","Granulados sabor Baunilha 1kg","img/p-cookies-03.webp","cookies-granulados-sabor-baunilha-1kg"],
+    ["cookies","Granulados sabor Chocolate 1kg","img/p-cookies-04.webp","cookies-granulados-sabor-chocolate-1kg"],
+
+    ["confeitos","Cereal Mega Ball Chocolate Branco 500g","img/p-confeitos-01.webp","cereal-mega-ball-chocolate-branco-500g"],
+    ["confeitos","Cereal Mega Ball Misto 500g","img/p-confeitos-02.webp","cereal-mega-ball-misto-500g"],
+    ["confeitos","Cereal Mega Ball Ao Leite 500g","img/p-confeitos-03.webp","cereal-mega-vabene-ball-ao-leite-500g"],
+    ["confeitos","Cereal Micro Ball Ao Leite 500g","img/p-confeitos-04.webp","cereal-micro-vabene-ball-ao-leite-500g"],
+    ["confeitos","Cereal Mini Ball Branco 500g","img/p-confeitos-05.webp","cereal-mini-vabene-ball-branco-500g"],
+    ["confeitos","Cereal Micro Ball Branco 500g","img/p-confeitos-06.webp","cereal-micro-vabene-ball-branco-500g"],
+    ["confeitos","Cereal Micro Ball Misto 500g","img/p-confeitos-07.webp","cereal-micro-vabene-ball-misto-500g"],
+    ["confeitos","Cereal Mini Ball Misto 500g","img/p-confeitos-08.webp","cereal-mini-vabene-ball-misto-500g"],
+
+    ["amendoim","Pasta de Amendoim 4kg","img/p-amendoim-01.webp","pasta-de-amendoim-4kg"],
+    ["amendoim","Pasta de Amendoim 1,05kg","img/p-amendoim-02.webp","pasta-de-amendoim-1kg"],
+    ["amendoim","Farinha de Amendoim Torrado 1,05kg","img/p-amendoim-03.webp","farinha-de-amendoim-torrado-1kg"],
+    ["amendoim","Amendoim Torrado em Metades 1,05kg","img/p-amendoim-04.webp","amendoim-torrado-em-metades-1kg"],
+    ["amendoim","Amendoim Torrado Granulado 1,05kg","img/p-amendoim-05.webp","amendoim-torrado-granulado-1kg"],
+    ["amendoim","Farofa Crocante de Amendoim 1,05kg","img/p-amendoim-06.webp","farofa-crocante-de-amendoim-1kg"],
+
+    ["pastas","Nocciola, Avelã","img/p-pastas-01.webp","nocciola-avela"],
+    ["pastas","Baunilha","img/p-pastas-02.webp","baunilha"],
+    ["pastas","Coco","img/p-pastas-03.webp","coco"],
+    ["pastas","Leite Condensado","img/p-pastas-04.webp","leite-condensado-2"],
+    ["pastas","Morango","img/p-pastas-05.webp","pasta-saborizante-morango"],
+    ["pastas","Pistacchio, Pistache","img/p-pastas-06.webp","pistacchio-pistache"],
+
+    ["avela","Creme de Avelã 350g","img/p-avela-01.webp","creme-de-avela-com-cacau-350g"],
+    ["avela","Creme de Avelã 180g","img/p-avela-02.webp","creme-de-avela-com-cacau-180g"],
+
+    ["pizza","Chocolate com Avelã 1,01kg","img/p-pizza-01.webp","recheio-para-pizza-chocolate-com-avela"],
+    ["pizza","Chocolate Branco 1,01kg","img/p-pizza-02.webp","recheio-para-pizza-chocolate-branco-1kg"],
+    ["pizza","Chocolate ao Leite 1,01kg","img/p-pizza-03.webp","recheio-para-pizza-chocolate-ao-leite-1kg"]
+  ];
+
+  function $(id){return document.getElementById(id)}
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
+  function blend(src){return ''}
+
+  /* faixa de texto */
+  var txt="Produtos para confeitaria e sorveteria";
+  var st="";for(var i=0;i<8;i++){st+="<span>"+txt+"</span>"}
+  $("strip").innerHTML=st;
+
+  /* cartoes de linhas */
+  var row=$("lineRow");
+  row.innerHTML=cats.map(function(c){
+    return '<button type="button" class="l-card" data-cat="'+c.k+'" aria-label="Ver '+esc(c.n)+'">'
+      +'<img src="'+U+c.img+'" alt=""'+blend(c.img)+' loading="lazy">'
+      +'<span class="pill">'+esc(c.n)+'</span></button>';
+  }).join("");
+
+  /* catalogo */
+  var tabs=$("tabs"),grid=$("grid"),note=$("catNote");
+  function render(k,animate){
+    var c=cats.filter(function(x){return x.k===k})[0];
+    var items=P.filter(function(p){return p[0]===k});
+    note.textContent=c.d;
+    grid.innerHTML=items.map(function(p,i){
+      var m=p[1].match(/^(.*?)\s+(\d+[,.]?\d*\s?(?:kg|g))$/i);
+      var title=m?m[1]:p[1];
+      var sub=m?c.n+", "+m[2]:c.n;
+      return '<article class="p" style="animation-delay:'+(i*35)+'ms">'
+        +'<div class="ph"><img src="'+U+p[2]+'" alt="'+esc(c.n+" "+p[1])+'"'+blend(p[2])+' loading="lazy"></div>'
+        +'<h4>'+esc(title)+'</h4><small>'+esc(sub)+'</small>'
+        +'<a href="'+L+p[3]+'/">Ver produto</a></article>';
+    }).join("");
+    if(animate){grid.classList.remove("swap");void grid.offsetWidth;grid.classList.add("swap")}
+    Array.prototype.forEach.call(tabs.children,function(b){b.setAttribute("aria-selected",b.dataset.k===k?"true":"false")});
+  }
+  cats.forEach(function(c){
+    var b=document.createElement("button");
+    b.type="button";b.className="tab";b.setAttribute("role","tab");b.dataset.k=c.k;b.textContent=c.n;
+    b.addEventListener("click",function(){render(c.k,true)});
+    tabs.appendChild(b);
+  });
+  render("artesanais",false);
+
+  /* qualquer elemento com data-cat abre a categoria no catalogo */
+  document.addEventListener("click",function(e){
+    var t=e.target.closest("[data-cat]");
+    if(!t)return;
+    render(t.getAttribute("data-cat"),true);
+    if(t.tagName==="BUTTON"){document.getElementById("produtos").scrollIntoView({behavior:"smooth"})}
+  });
+
+  /* carrossel do hero */
+  var slides=document.querySelectorAll(".slide"),dots=$("dots"),cur=0,timer=null;
+  Array.prototype.forEach.call(slides,function(s,i){
+    var d=document.createElement("button");
+    d.type="button";d.setAttribute("aria-label","Banner "+(i+1));
+    d.addEventListener("click",function(){go(i);play()});
+    dots.appendChild(d);
+  });
+  function go(i){
+    cur=(i+slides.length)%slides.length;
+    Array.prototype.forEach.call(slides,function(s,j){s.classList.toggle("on",j===cur)});
+    Array.prototype.forEach.call(dots.children,function(d,j){d.setAttribute("aria-current",j===cur?"true":"false")});
+  }
+  function play(){
+    clearInterval(timer);
+    if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+    timer=setInterval(function(){go(cur+1)},6500);
+  }
+  go(0);play();
+  var hero=document.querySelector(".hero");
+  hero.addEventListener("mouseenter",function(){clearInterval(timer)});
+  hero.addEventListener("mouseleave",play);
+
+  /* menu */
+  var mb=$("menuBtn"),dr=$("drawer");
+  function closeMenu(){dr.classList.remove("open");mb.setAttribute("aria-expanded","false");mb.textContent="Menu"}
+  mb.addEventListener("click",function(){
+    var o=dr.classList.toggle("open");
+    mb.setAttribute("aria-expanded",o?"true":"false");
+    mb.textContent=o?"Fechar":"Menu";
+  });
+  Array.prototype.forEach.call(dr.querySelectorAll("a"),function(a){a.addEventListener("click",closeMenu)});
+
+  /* cookies */
+  var ck=$("cookie"),seen=false;
+  try{seen=localStorage.getItem("vb-cookie")==="1"}catch(e){}
+  if(!seen){ck.hidden=false}
+  $("cookieOk").addEventListener("click",function(){
+    ck.hidden=true;
+    try{localStorage.setItem("vb-cookie","1")}catch(e){}
+  });
+})();
+</script>
+
+</body>
+</html>
