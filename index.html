@@ -67,9 +67,10 @@ h1,h2,h3,h4{font-family:var(--font);font-weight:300;line-height:1.1;text-wrap:ba
 .hero{position:relative;height:min(calc(100dvh - var(--nav-h)),56vw);min-height:520px;overflow:hidden;background:linear-gradient(90deg,#5a2630 0%,#9a6670 100%)}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;pointer-events:none}
 .slide.on{opacity:1;pointer-events:auto}
-.slide img{position:absolute;top:0;right:0;bottom:0;width:88%;height:100%;object-fit:cover;object-position:62% 80%;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.4) 9%,rgba(0,0,0,.85) 20%,#000 32%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.4) 9%,rgba(0,0,0,.85) 20%,#000 32%)}
-.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(60,10,16,.12) 0%,rgba(60,10,16,0) 30%)}
+.slide img{position:absolute;top:0;left:0;bottom:0;width:112%;height:100%;max-width:none;object-fit:cover;object-position:0% 85%}
+.slide::after{content:"";position:absolute;inset:0;background:none}
 .slide .copy{position:absolute;z-index:2;left:max(var(--gutter),calc((100% - 1360px)/2 + var(--gutter)));top:clamp(28px,7%,76px);max-width:min(34rem,52%);text-align:left;color:#fff}
+.slide .copy{text-shadow:0 2px 18px rgba(60,10,16,.45)}
 .slide h1{font-size:clamp(2rem,3.5vw,3.5rem);font-weight:300;line-height:1.04;letter-spacing:-.015em}
 .slide h1 b{display:block;font-weight:600}
 .slide p{margin:16px 0 26px;max-width:30ch;font-size:1.05rem;font-weight:400}
@@ -78,7 +79,7 @@ h1,h2,h3,h4{font-family:var(--font);font-weight:300;line-height:1.1;text-wrap:ba
 .dots button[aria-current="true"]{background:#fff}
 @media (prefers-reduced-motion:no-preference){.slide.on h1,.slide.on p,.slide.on .pill{animation:rise .8s cubic-bezier(.16,1,.3,1) both}.slide.on p{animation-delay:.08s}.slide.on .pill{animation-delay:.16s}}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-@media (max-width:700px){.hero{height:calc(100svh - var(--nav-h))}.slide img{width:100%;-webkit-mask-image:none;mask-image:none;object-position:50% 100%}.slide::after{background:linear-gradient(180deg,rgba(40,5,9,.62) 0%,rgba(40,5,9,.2) 38%,rgba(40,5,9,0) 56%)}.slide .copy{left:0;right:0;max-width:none;text-align:center;padding:0 var(--gutter);top:clamp(32px,7vh,72px)}.slide p{margin-inline:auto}}
+@media (max-width:700px){.hero{height:calc(100svh - var(--nav-h))}.slide img{width:100%;object-position:50% 100%}.slide .copy{text-shadow:0 2px 14px rgba(60,10,16,.55)}.slide .copy{left:0;right:0;max-width:none;text-align:center;padding:0 var(--gutter);top:clamp(32px,7vh,72px)}.slide p{margin-inline:auto}}
 
 /* titulos de secao */
 .sec{padding-block:clamp(56px,8vw,104px)}
