@@ -64,11 +64,11 @@ h1,h2,h3,h4{font-family:var(--font);font-weight:300;line-height:1.1;text-wrap:ba
 @media (min-width:1100px){.drawer.open{display:none}}
 
 /* hero em tela cheia */
-.hero{position:relative;height:min(calc(100dvh - var(--nav-h)),56vw);min-height:520px;overflow:hidden;background:linear-gradient(90deg,#2c070b 0%,#5c1a22 100%)}
+.hero{position:relative;height:min(calc(100dvh - var(--nav-h)),56vw);min-height:520px;overflow:hidden;background:linear-gradient(90deg,#4d1c24 0%,#7d4650 45%,#b78a90 100%)}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;pointer-events:none}
 .slide.on{opacity:1;pointer-events:auto}
-.slide img{position:absolute;top:0;right:0;bottom:0;width:84%;height:100%;object-fit:cover;object-position:62% 80%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%)}
-.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(32,4,8,.55) 0%,rgba(86,12,18,.3) 22%,rgba(86,12,18,0) 42%),linear-gradient(180deg,rgba(40,5,9,.3) 0%,rgba(40,5,9,0) 34%)}
+.slide img{position:absolute;top:0;right:0;bottom:0;width:84%;height:100%;object-fit:cover;object-position:62% 80%;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.08) 8%,rgba(0,0,0,.25) 18%,rgba(0,0,0,.5) 30%,rgba(0,0,0,.78) 44%,rgba(0,0,0,.94) 56%,#000 68%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.08) 8%,rgba(0,0,0,.25) 18%,rgba(0,0,0,.5) 30%,rgba(0,0,0,.78) 44%,rgba(0,0,0,.94) 56%,#000 68%)}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(60,10,16,.32) 0%,rgba(60,10,16,.14) 22%,rgba(60,10,16,0) 40%),linear-gradient(180deg,rgba(60,10,16,.2) 0%,rgba(60,10,16,0) 30%)}
 .slide .copy{position:absolute;z-index:2;left:max(var(--gutter),calc((100% - 1360px)/2 + var(--gutter)));top:clamp(28px,7%,76px);max-width:min(34rem,52%);text-align:left;color:#fff}
 .slide h1{font-size:clamp(2rem,3.5vw,3.5rem);font-weight:300;line-height:1.04;letter-spacing:-.015em}
 .slide h1 b{display:block;font-weight:600}
