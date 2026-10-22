@@ -109,6 +109,7 @@ h1,h2,h3,h4{font-family:var(--font);font-weight:300;line-height:1.1;text-wrap:ba
 
 /* catalogo */
 .tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:34px}
+.tabs .brk{flex-basis:100%;height:0;margin:-10px 0}
 .tab{padding:.65em 1.3em;border-radius:999px;border:1px solid var(--line);background:var(--white);font:400 .86rem var(--font);color:var(--ink);cursor:pointer;transition:all .2s}
 .tab:hover{border-color:var(--red);color:var(--red)}
 .tab[aria-selected="true"]{background:var(--grad);border-color:var(--red);color:#fff}
@@ -610,6 +611,7 @@ footer .legal{width:100%;font-size:.8rem;color:var(--muted);display:flex;justify
     Array.prototype.forEach.call(tabs.children,function(b){b.setAttribute("aria-selected",b.dataset.k===k?"true":"false")});
   }
   cats.forEach(function(c){
+    if(c.k==="pastas"){var br=document.createElement("span");br.className="brk";br.setAttribute("aria-hidden","true");tabs.appendChild(br)}
     var b=document.createElement("button");
     b.type="button";b.className="tab";b.setAttribute("role","tab");b.dataset.k=c.k;b.textContent=c.n;
     b.addEventListener("click",function(){render(c.k,true)});
