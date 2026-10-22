@@ -68,16 +68,17 @@ h1,h2,h3,h4{font-family:var(--font);font-weight:300;line-height:1.1;text-wrap:ba
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;pointer-events:none}
 .slide.on{opacity:1;pointer-events:auto}
 .slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 80%}
-.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(104,18,24,.62) 0%,rgba(104,18,24,.32) 34%,rgba(104,18,24,0) 58%)}
-.slide .copy{position:absolute;z-index:2;left:0;right:0;top:clamp(36px,8vh,84px);text-align:center;color:#fff;padding:0 var(--gutter)}
-.slide h1{font-size:clamp(2.6rem,6.4vw,5.2rem);font-weight:300;letter-spacing:-.01em}
-.slide p{margin:12px auto 26px;max-width:36ch;font-size:1.05rem;font-weight:400}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(96,16,22,.62) 0%,rgba(96,16,22,.34) 30%,rgba(96,16,22,0) 58%),linear-gradient(180deg,rgba(96,16,22,.3) 0%,rgba(96,16,22,0) 42%)}
+.slide .copy{position:absolute;z-index:2;left:max(var(--gutter),calc((100% - 1360px)/2 + var(--gutter)));top:clamp(40px,14%,150px);max-width:min(30rem,44%);text-align:left;color:#fff}
+.slide h1{font-size:clamp(2.3rem,4.6vw,4.4rem);font-weight:300;line-height:1.02;letter-spacing:-.015em}
+.slide h1 b{display:block;font-weight:600}
+.slide p{margin:16px 0 26px;max-width:30ch;font-size:1.05rem;font-weight:400}
 .dots{position:absolute;z-index:3;left:0;right:0;bottom:22px;display:flex;justify-content:center;gap:10px}
 .dots button{width:9px;height:9px;padding:0;border-radius:50%;border:1px solid #fff;background:transparent;cursor:pointer}
 .dots button[aria-current="true"]{background:#fff}
 @media (prefers-reduced-motion:no-preference){.slide.on h1,.slide.on p,.slide.on .pill{animation:rise .8s cubic-bezier(.16,1,.3,1) both}.slide.on p{animation-delay:.08s}.slide.on .pill{animation-delay:.16s}}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-@media (max-width:700px){.hero{height:calc(100svh - var(--nav-h))}.slide img{object-position:50% 100%}}
+@media (max-width:700px){.hero{height:calc(100svh - var(--nav-h))}.slide img{object-position:50% 100%}.slide .copy{left:0;right:0;max-width:none;text-align:center;padding:0 var(--gutter);top:clamp(32px,7vh,72px)}.slide p{margin-inline:auto}}
 
 /* titulos de secao */
 .sec{padding-block:clamp(56px,8vw,104px)}
@@ -229,23 +230,23 @@ footer .legal{width:100%;font-size:.8rem;color:var(--muted);display:flex;justify
 <section class="hero" aria-roledescription="carrossel" aria-label="Lançamentos VaBene">
   <div class="slide on">
     <img src="img/b1-1280.jpg" srcset="img/b1-1280.jpg 1280w, img/b1-2560.jpg 2560w" sizes="100vw" alt="Recheio artesanal Cocco Bianco e fatia de bolo" width="2560" height="1466" fetchpriority="high">
-    <div class="copy"><h1>Cocco Bianco</h1><p>Recheio artesanal cremoso com pedaços</p><a class="pill on-dark" href="#produtos" data-cat="artesanais">Conheça mais</a></div>
+    <div class="copy"><h1>Cocco <b>Bianco</b></h1><p>Recheio artesanal cremoso com pedaços</p><a class="pill on-dark" href="#produtos" data-cat="artesanais">Conheça mais</a></div>
   </div>
   <div class="slide">
     <img src="img/b2-1280.jpg" srcset="img/b2-1280.jpg 1280w, img/b2-2560.jpg 2560w" sizes="100vw" alt="Cookies granulados sabor Speculoos 1kg" width="2560" height="1466" loading="lazy">
-    <div class="copy"><h1>Cookies Speculoos</h1><p>Sabor nobre e marcante</p><a class="pill on-dark" href="#produtos" data-cat="cookies">Conheça mais</a></div>
+    <div class="copy"><h1>Cookies <b>Speculoos</b></h1><p>Sabor nobre e marcante</p><a class="pill on-dark" href="#produtos" data-cat="cookies">Conheça mais</a></div>
   </div>
   <div class="slide">
     <img src="img/b3-1280.jpg" srcset="img/b3-1280.jpg 1280w, img/b3-2560.jpg 2560w" sizes="100vw" alt="Recheio artesanal Amendoim com Cacau" width="2560" height="1466" loading="lazy">
-    <div class="copy"><h1>Amendoim com Cacau</h1><p>Sabor tradicional e marcante</p><a class="pill on-dark" href="#produtos" data-cat="artesanais">Conheça mais</a></div>
+    <div class="copy"><h1>Amendoim com <b>Cacau</b></h1><p>Sabor tradicional e marcante</p><a class="pill on-dark" href="#produtos" data-cat="artesanais">Conheça mais</a></div>
   </div>
   <div class="slide">
     <img src="img/b4-1280.jpg" srcset="img/b4-1280.jpg 1280w, img/b4-2560.jpg 2560w" sizes="100vw" alt="Recheio forneável Frutas Vermelhas e cheesecake" width="2560" height="1466" loading="lazy">
-    <div class="copy"><h1>Frutas Vermelhas</h1><p>Recheio forneável com pedaços de fruta</p><a class="pill on-dark" href="#produtos" data-cat="forneaveis">Conheça mais</a></div>
+    <div class="copy"><h1>Frutas <b>Vermelhas</b></h1><p>Recheio forneável com pedaços de fruta</p><a class="pill on-dark" href="#produtos" data-cat="forneaveis">Conheça mais</a></div>
   </div>
   <div class="slide">
     <img src="img/b5-1280.jpg" srcset="img/b5-1280.jpg 1280w, img/b5-2560.jpg 2560w" sizes="100vw" alt="Recheio artesanal Chocolate com Avelã e bolo" width="2560" height="1466" loading="lazy">
-    <div class="copy"><h1>Chocolate com Avelã</h1><p>Recheio cremoso com pedaços</p><a class="pill on-dark" href="#produtos" data-cat="artesanais">Conheça mais</a></div>
+    <div class="copy"><h1>Chocolate com <b>Avelã</b></h1><p>Recheio cremoso com pedaços</p><a class="pill on-dark" href="#produtos" data-cat="artesanais">Conheça mais</a></div>
   </div>
   <div class="dots" id="dots" role="group" aria-label="Escolher banner"></div>
 </section>
