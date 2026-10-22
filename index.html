@@ -288,10 +288,11 @@ footer .legal{width:100%;font-size:.8rem;color:var(--muted);display:flex;justify
       <a href="#mercados">Mercados</a>
       <a href="#quem-somos">Quem somos</a>
       <a href="#receitas">Receitas</a>
+      <a href="materiais.html">Materiais</a>
       <a href="https://vabenesorveteria.com.br">Sorveteria</a>
     </nav>
     <div class="top-right">
-      <a class="pill hide-s" href="#contato">Fale com a VaBene</a>
+      <a class="pill hide-s" href="#contato" data-contato="Orçamento">Fale com a VaBene</a>
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer" type="button">Menu</button>
     </div>
   </div>
@@ -301,7 +302,7 @@ footer .legal{width:100%;font-size:.8rem;color:var(--muted);display:flex;justify
   <a href="#mercados">Mercados</a>
   <a href="#quem-somos">Quem somos</a>
   <a href="#receitas">Receitas</a>
-  <a href="https://vabeneconfeitaria.com.br/downloads/">Downloads</a>
+  <a href="materiais.html">Materiais</a>
   <a href="https://vabenesorveteria.com.br">VaBene Sorveteria</a>
   <a href="#contato">Fale com a VaBene</a>
 </div>
@@ -416,8 +417,8 @@ footer .legal{width:100%;font-size:.8rem;color:var(--muted);display:flex;justify
   <div class="wrap">
     <div class="intro">
       <h2>Fale com a VaBene</h2>
-      <p>Quer saber mais sobre a empresa e os produtos? Ligue ou escreva. Os materiais de apoio estão na página de downloads.</p>
-      <div class="dl"><a class="pill solid" href="https://vabeneconfeitaria.com.br/downloads/">Baixar catálogo</a></div>
+      <p>Quer saber mais sobre a empresa e os produtos? Ligue ou escreva. Os materiais de apoio estão na página de materiais.</p>
+      <div class="dl"><a class="pill solid" href="materiais.html">Baixar materiais</a></div>
     </div>
     <dl class="info">
       <div><dt>Telefone</dt><dd><a href="tel:+551421052108">(+55) 14 2105-2108</a></dd></div>
@@ -437,7 +438,7 @@ footer .legal{width:100%;font-size:.8rem;color:var(--muted);display:flex;justify
       <a href="#produtos">Produtos</a>
       <a href="#quem-somos">Quem somos</a>
       <a href="https://vabeneconfeitaria.com.br/receitas/">Receitas</a>
-      <a href="https://vabeneconfeitaria.com.br/downloads/">Downloads</a>
+      <a href="materiais.html">Materiais</a>
       <a href="https://vabenesorveteria.com.br">VaBene Sorveteria</a>
       <a href="https://vabeneconfeitaria.com.br/spanish">Español</a>
     </nav>
@@ -779,6 +780,119 @@ footer .legal{width:100%;font-size:.8rem;color:var(--muted);display:flex;justify
   }
 })();
 </script>
+<!--CONTATO-->
+<style>
+.fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:90;display:inline-flex;align-items:center;gap:10px;padding:15px 24px 15px 20px;border:0;border-radius:999px;background:linear-gradient(135deg,#E04A4F 0%,#C4282D 48%,#8A1D22 100%);color:#fff;font:600 .9rem/1 "Open Sans",sans-serif;letter-spacing:.03em;cursor:pointer;overflow:hidden;isolation:isolate;box-shadow:0 18px 34px -14px rgba(138,29,34,.85);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
+.fab:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 24px 40px -14px rgba(138,29,34,.9)}
+.fab svg{width:20px;height:20px;flex:none}
+.fab::after{content:"";position:absolute;top:-30%;bottom:-30%;left:-60%;width:36%;z-index:-1;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));transform:skewX(-22deg);animation:fabshine 4.2s ease-in-out infinite}
+@keyframes fabshine{0%,55%{left:-60%}100%{left:130%}}
+.fab::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-2;box-shadow:0 0 0 0 rgba(224,74,79,.55);animation:fabpulse 2.8s ease-out infinite}
+@keyframes fabpulse{0%{box-shadow:0 0 0 0 rgba(224,74,79,.5)}70%,100%{box-shadow:0 0 0 18px rgba(224,74,79,0)}}
+.cm{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:16px;background:rgba(42,12,16,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.cm.open{opacity:1;visibility:visible}
+.cm-card{position:relative;display:grid;grid-template-columns:.86fr 1.14fr;width:min(940px,100%);max-height:min(720px,calc(100dvh - 32px));border-radius:32px;overflow:hidden;background:#fff;box-shadow:0 50px 90px -30px rgba(0,0,0,.6);transform:translateY(34px) scale(.96);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.cm.open .cm-card{transform:none}
+.cm-side{position:relative;overflow:hidden;color:#fff;padding:clamp(26px,4vw,46px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;background:linear-gradient(135deg,#E04A4F 0%,#C4282D 25%,#8A1D22 50%,#C4282D 75%,#E04A4F 100%);background-size:260% 260%;animation:cmdrift 12s ease-in-out infinite alternate}
+@keyframes cmdrift{to{background-position:100% 100%}}
+.cm-side::before{content:"";position:absolute;top:-30%;bottom:-30%;left:-70%;width:40%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.22),rgba(255,255,255,0));transform:skewX(-20deg);animation:fabshine 6s ease-in-out infinite 1s;pointer-events:none}
+.cm-side h2{font:300 clamp(1.9rem,3.4vw,2.7rem)/1.06 "Open Sans",sans-serif;position:relative}
+.cm-side h2 b{font-weight:600}
+.cm-side p{font-weight:300;line-height:1.6;opacity:.92;position:relative;font-size:.95rem}
+.cm-info{display:grid;gap:14px;font-size:.9rem;position:relative}
+.cm-info small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;margin-bottom:3px}
+.cm-info a{color:#fff;text-decoration:none;font-weight:600}
+.cm-form{padding:clamp(24px,3.6vw,42px);overflow:auto;display:grid;gap:14px;align-content:start;font-family:"Open Sans",sans-serif;color:#2A1A1B}
+.cm-form .r2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cm-form label{display:grid;gap:6px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#7A6264}
+.cm-form input,.cm-form select,.cm-form textarea{font:400 .95rem "Open Sans",sans-serif;letter-spacing:0;text-transform:none;color:#2A1A1B;background:#FDF7F6;border:1px solid #E6D5D5;border-radius:16px;padding:13px 16px;outline:0;width:100%;transition:border-color .3s,box-shadow .3s,background .3s}
+.cm-form textarea{resize:vertical;min-height:96px;border-radius:20px}
+.cm-form input:focus,.cm-form select:focus,.cm-form textarea:focus{border-color:#C4282D;background:#fff;box-shadow:0 0 0 4px rgba(196,40,45,.12)}
+.cm-form .ck{display:flex;gap:10px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.78rem;line-height:1.45;color:#7A6264}
+.cm-form .ck input{width:18px;height:18px;margin-top:2px;padding:0;accent-color:#C4282D;flex:none}
+.cm-send{position:relative;overflow:hidden;isolation:isolate;border:0;border-radius:999px;padding:16px 28px;background:linear-gradient(135deg,#E04A4F 0%,#C4282D 48%,#8A1D22 100%);color:#fff;font:600 .95rem "Open Sans",sans-serif;letter-spacing:.04em;cursor:pointer;transition:transform .3s}
+.cm-send:hover{transform:translateY(-2px)}
+.cm-send::after{content:"";position:absolute;top:-30%;bottom:-30%;left:-60%;width:36%;z-index:-1;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));transform:skewX(-22deg);animation:fabshine 3.6s ease-in-out infinite}
+.cm-x{position:absolute;top:14px;right:14px;z-index:3;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#2A1A1B;font-size:1.3rem;line-height:1;cursor:pointer;display:grid;place-items:center;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.cm-x:hover{transform:rotate(90deg)}
+.cm-ok{display:none;padding:clamp(24px,4vw,46px);align-content:center;gap:16px;text-align:center;font-family:"Open Sans",sans-serif;color:#2A1A1B}
+.cm-ok h3{font:300 1.9rem/1.1 "Open Sans",sans-serif}
+.cm-ok h3 b{font-weight:600}
+.cm-ok p{color:#7A6264;font-size:.95rem;line-height:1.6}
+.cm-ok .ring{width:74px;height:74px;margin:0 auto;border-radius:50%;background:linear-gradient(135deg,#E04A4F,#8A1D22);display:grid;place-items:center;color:#fff;animation:pop .7s cubic-bezier(.16,1,.3,1) both}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+.cm-ok .acts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cm-ok .acts button{border:1px solid #C4282D;background:#fff;color:#C4282D;border-radius:999px;padding:12px 22px;font:600 .85rem "Open Sans",sans-serif;cursor:pointer}
+.cm-card.sent .cm-form{display:none}.cm-card.sent .cm-ok{display:grid}
+@media (max-width:760px){.cm-card{grid-template-columns:1fr;overflow:auto}.cm-side{padding:24px;gap:14px}.cm-side p,.cm-info{display:none}.cm-form .r2{grid-template-columns:1fr}.fab span{display:none}.fab{padding:16px}}
+@media (prefers-reduced-motion:reduce){.fab::after,.fab::before,.cm-side,.cm-side::before,.cm-send::after{animation:none}}
+</style>
+<button class="fab" id="fab" type="button" aria-haspopup="dialog" aria-label="Abrir formulário de contato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.5-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg><span>Fale conosco</span></button>
+<div class="cm" id="cm" role="dialog" aria-modal="true" aria-labelledby="cmT" aria-hidden="true">
+  <div class="cm-card" id="cmCard">
+    <button class="cm-x" id="cmX" type="button" aria-label="Fechar">×</button>
+    <aside class="cm-side">
+      <div><h2 id="cmT">Vamos <b>conversar</b>?</h2><p style="margin-top:14px">Conte o que você precisa e nossa equipe responde com orçamento, materiais técnicos ou sugestões de aplicação.</p></div>
+      <div class="cm-info">
+        <div><small>Telefone</small><a href="tel:+551421052108">(+55) 14 2105-2108</a></div>
+        <div><small>E-mail</small><a href="mailto:sac@vabenealimentos.com.br">sac@vabenealimentos.com.br</a></div>
+        <div><small>Fábrica</small>Av. Guiomar Novaes, 215 A, Marília/SP</div>
+      </div>
+    </aside>
+    <form class="cm-form" id="cmForm" novalidate>
+      <div class="r2"><label>Nome<input name="nome" required autocomplete="name" placeholder="Seu nome"></label><label>Empresa<input name="empresa" autocomplete="organization" placeholder="Nome da empresa"></label></div>
+      <div class="r2"><label>E-mail<input name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com"></label><label>Telefone<input name="tel" type="tel" autocomplete="tel" placeholder="(00) 00000-0000"></label></div>
+      <div class="r2"><label>Segmento<select name="seg"><option>Panificação e confeitaria</option><option>Sorveteria</option><option>Chocolates e trufas</option><option>Indústria de alimentos</option><option>Outro</option></select></label><label>Assunto<select name="assunto" id="cmAssunto"><option>Orçamento</option><option>Material técnico</option><option>Receituário</option><option>Catálogo</option><option>Outro assunto</option></select></label></div>
+      <label>Mensagem<textarea name="msg" id="cmMsg" placeholder="Conte como podemos ajudar"></textarea></label>
+      <label class="ck"><input type="checkbox" name="ok" required><span>Concordo com o tratamento dos meus dados para retorno deste contato, conforme a Política de Privacidade.</span></label>
+      <button class="cm-send" type="submit">Enviar mensagem</button>
+    </form>
+    <div class="cm-ok" id="cmOk">
+      <div class="ring"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h3>Mensagem <b>pronta</b></h3>
+      <p>Abrimos o seu aplicativo de e-mail com tudo preenchido para <b>sac@vabenealimentos.com.br</b>. Falta só enviar por lá. Se nada abriu, copie o texto abaixo e envie para esse endereço.</p>
+      <div class="acts"><button type="button" id="cmCopy">Copiar mensagem</button><button type="button" id="cmBack">Editar</button></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var cm=document.getElementById("cm"),card=document.getElementById("cmCard"),form=document.getElementById("cmForm"),fab=document.getElementById("fab"),last=null,txt="";
+  function open(o){
+    o=o||{};last=document.activeElement;
+    if(o.assunto){var s=document.getElementById("cmAssunto");for(var i=0;i<s.options.length;i++)if(s.options[i].text===o.assunto)s.selectedIndex=i}
+    if(o.mensagem)document.getElementById("cmMsg").value=o.mensagem;
+    card.classList.remove("sent");cm.classList.add("open");cm.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
+    setTimeout(function(){var f=form.querySelector("input");if(f)f.focus()},350);
+  }
+  function close(){cm.classList.remove("open");cm.setAttribute("aria-hidden","true");document.body.style.overflow="";if(last&&last.focus)try{last.focus()}catch(e){}}
+  window.openContato=open;
+  fab.addEventListener("click",function(){open()});
+  document.getElementById("cmX").addEventListener("click",close);
+  cm.addEventListener("mousedown",function(e){if(e.target===cm)close()});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&cm.classList.contains("open"))close()});
+  document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest("[data-contato]");if(t){e.preventDefault();open({assunto:t.getAttribute("data-contato")||"",mensagem:t.getAttribute("data-msg")||""})}});
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var f=form.elements,bad=null;
+    ["nome","email"].forEach(function(n){if(!f[n].value.trim()&&!bad)bad=f[n]});
+    if(!bad&&!/^\S+@\S+\.\S+$/.test(f.email.value.trim()))bad=f.email;
+    if(!bad&&!f.ok.checked)bad=f.ok;
+    if(bad){bad.focus();bad.style.borderColor="#C4282D";return}
+    txt="Nome: "+f.nome.value.trim()+"\nEmpresa: "+f.empresa.value.trim()+"\nE-mail: "+f.email.value.trim()+"\nTelefone: "+f.tel.value.trim()+"\nSegmento: "+f.seg.value+"\nAssunto: "+f.assunto.value+"\n\n"+f.msg.value.trim();
+    card.classList.add("sent");
+    var url="mailto:sac@vabenealimentos.com.br?subject="+encodeURIComponent("Contato pelo site: "+f.assunto.value)+"&body="+encodeURIComponent(txt);
+    try{window.location.href=url}catch(x){}
+  });
+  document.getElementById("cmBack").addEventListener("click",function(){card.classList.remove("sent")});
+  document.getElementById("cmCopy").addEventListener("click",function(){
+    var b=this;
+    function done(){b.textContent="Copiado"}
+    try{navigator.clipboard.writeText(txt).then(done,function(){})}catch(e){}
+  });
+})();
+</script>
+<!--/CONTATO-->
 
 </body>
 </html>
